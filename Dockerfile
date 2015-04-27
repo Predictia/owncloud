@@ -18,11 +18,11 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     mkdir -p /var/www/owncloud/data && \
     sed -i '/server.errorlog/s|^|#|' /etc/lighttpd/lighttpd.conf && \
     sed -i '/server.document-root/s|/html|/owncloud|' /etc/lighttpd/lighttpd.conf && \
-    echo '\n$HTTP["url"] =~ "^/owncloud/data/" {' \
+    echo '\n$HTTP["url"] =~ "^/data/" {' \
                 >>/etc/lighttpd/lighttpd.conf && \
     echo '\turl.access-deny = ("")'  >>/etc/lighttpd/lighttpd.conf && \
     echo '}' >>/etc/lighttpd/lighttpd.conf && \
-    echo '\n$HTTP["url"] =~ "^/owncloud($|/)" {' \
+    echo '\n$HTTP["url"] =~ "^/($|/)" {' \
                 >>/etc/lighttpd/lighttpd.conf && \
     echo '\tdir-listing.activate = "disable"' >>/etc/lighttpd/lighttpd.conf && \
     echo '}' >>/etc/lighttpd/lighttpd.conf && \
